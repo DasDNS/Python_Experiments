@@ -1,7 +1,8 @@
 # ==========================================
 # TASK 4: YOLO Face Detection + CNN Emotion
 # ==========================================
-
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1" 
 import cv2
 import numpy as np
 from ultralytics import YOLO
@@ -40,7 +41,8 @@ while True:
         break
 
     # YOLO face detection
-    results = yolo_model(frame, conf=0.4)
+    results = yolo_model(frame, conf=0.4, device='cpu')
+
 
     for result in results:
         for box in result.boxes:
